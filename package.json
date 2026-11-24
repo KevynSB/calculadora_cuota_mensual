@@ -1,0 +1,13 @@
+{
+  "name": "calculadora-creditos",
+  "version": "1.0.0",
+  "description": "Calculadora de cuota mensual y tabla de amortización (intereses sobre saldos). SB_SoftSolutions.",
+  "type": "module",
+  "private": true,
+  "scripts": {
+    "test": "node --test",
+    "start": "npx --yes serve ."
+  },
+  "author": "SB_SoftSolutions",
+  "license": "UNLICENSED"
+}

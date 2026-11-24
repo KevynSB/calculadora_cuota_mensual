@@ -1,0 +1,182 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Calculadora de Créditos | SB_SoftSolutions</title>
+  <meta name="description" content="Calcule en segundos la cuota mensual de su crédito con intereses sobre saldos y vea su tabla de amortización.">
+  <meta name="theme-color" content="#0F2A4A">
+  <meta property="og:title" content="Calculadora de Créditos">
+  <meta property="og:description" content="Conozca la cuota mensual de su crédito en segundos.">
+  <meta property="og:image" content="assets/img/logo-sb.png">
+  <link rel="icon" type="image/png" href="assets/img/favicon.png">
+  <link rel="apple-touch-icon" href="assets/img/apple-touch-icon.png">
+  <link rel="stylesheet" href="css/styles.css">
+  <script type="module" src="js/main.js"></script>
+</head>
+<body>
+  <a class="skip-link" href="#contenido">Ir al contenido</a>
+
+  <header class="site-header">
+    <div class="container site-header__inner">
+      <span class="brand-mark">
+        <img src="assets/img/logo-sb-mark.png" alt="Logo SB_SoftSolutions" width="56" height="56">
+      </span>
+      <div>
+        <h1 class="site-title">Calculadora de Créditos</h1>
+        <p class="site-subtitle">Conozca su cuota mensual en segundos</p>
+      </div>
+    </div>
+  </header>
+
+  <main id="contenido" class="container main">
+    <!-- 1. Formulario -->
+    <section class="card" aria-labelledby="form-title">
+      <h2 id="form-title" class="card__title">Datos de su crédito</h2>
+      <p class="card__lead">Llene los 3 datos y presione <strong>Calcular mi cuota</strong>.</p>
+
+      <form id="loan-form" class="loan-form" novalidate>
+        <!-- Monto -->
+        <div class="field" data-field="amount">
+          <label class="field__label" for="amount">
+            <span class="step" aria-hidden="true">1</span>
+            ¿Cuánto dinero necesita?
+          </label>
+          <div class="input-group">
+            <span class="input-group__addon" aria-hidden="true">Q</span>
+            <input id="amount" name="amount" class="input" type="text"
+                   inputmode="decimal" autocomplete="off" placeholder="Ej. 21,000"
+                   aria-describedby="amount-hint amount-error">
+          </div>
+          <p id="amount-hint" class="field__hint">Monto del crédito en quetzales. Ejemplo: 21000</p>
+          <p id="amount-error" class="field__error" role="alert" hidden></p>
+        </div>
+
+        <!-- Plazo -->
+        <div class="field" data-field="termMonths">
+          <label class="field__label" for="termMonths">
+            <span class="step" aria-hidden="true">2</span>
+            ¿En cuántos meses lo pagará?
+          </label>
+          <div class="input-group">
+            <input id="termMonths" name="termMonths" class="input" type="text"
+                   inputmode="numeric" autocomplete="off" placeholder="Ej. 36"
+                   aria-describedby="term-hint termMonths-error">
+            <span class="input-group__addon input-group__addon--end" aria-hidden="true">meses</span>
+          </div>
+          <p id="term-hint" class="field__hint">Escriba el plazo o elija uno rápido:</p>
+          <div class="chips" role="group" aria-label="Plazos más comunes">
+            <button type="button" class="chip" data-term="12">12 meses</button>
+            <button type="button" class="chip" data-term="24">24 meses</button>
+            <button type="button" class="chip" data-term="36">36 meses</button>
+            <button type="button" class="chip" data-term="48">48 meses</button>
+            <button type="button" class="chip" data-term="60">60 meses</button>
+          </div>
+          <p id="termMonths-error" class="field__error" role="alert" hidden></p>
+        </div>
+
+        <!-- Tasa -->
+        <div class="field" data-field="annualRate">
+          <label class="field__label" for="annualRate">
+            <span class="step" aria-hidden="true">3</span>
+            ¿Cuál es la tasa de interés anual?
+          </label>
+          <div class="input-group">
+            <input id="annualRate" name="annualRate" class="input" type="text"
+                   inputmode="decimal" autocomplete="off" placeholder="Ej. 26"
+                   aria-describedby="rate-hint annualRate-error">
+            <span class="input-group__addon input-group__addon--end" aria-hidden="true">% anual</span>
+          </div>
+          <p id="rate-hint" class="field__hint">Tasa anual sobre saldos. Ejemplo: 26</p>
+          <p id="annualRate-error" class="field__error" role="alert" hidden></p>
+        </div>
+
+        <button type="submit" class="btn btn--primary btn--block">
+          <svg class="btn__icon" viewBox="0 0 24 24" aria-hidden="true"><path d="M7 2h10a2 2 0 0 1 2 2v16a2 2 0 0 1-2 2H7a2 2 0 0 1-2-2V4a2 2 0 0 1 2-2Zm0 2v4h10V4H7Zm1 7a1.25 1.25 0 1 0 0 2.5A1.25 1.25 0 0 0 8 11Zm4 0a1.25 1.25 0 1 0 0 2.5 1.25 1.25 0 0 0 0-2.5Zm4 0a1.25 1.25 0 1 0 0 2.5 1.25 1.25 0 0 0 0-2.5Zm-8 4a1.25 1.25 0 1 0 0 2.5A1.25 1.25 0 0 0 8 15Zm4 0a1.25 1.25 0 1 0 0 2.5 1.25 1.25 0 0 0 0-2.5Zm4 0a1.25 1.25 0 1 0 0 2.5 1.25 1.25 0 0 0 0-2.5Z"/></svg>
+          Calcular mi cuota
+        </button>
+      </form>
+    </section>
+
+    <!-- 2. Resultado (oculto hasta calcular) -->
+    <section id="result" class="card result" aria-labelledby="result-title" aria-live="polite" hidden>
+      <h2 id="result-title" class="result__label" tabindex="-1">Su cuota mensual es</h2>
+      <p class="result__amount" data-result="monthlyPayment">Q0.00</p>
+      <p class="result__summary" data-result="summary"></p>
+
+      <dl class="stats">
+        <div class="stat">
+          <dt>Monto del crédito</dt>
+          <dd data-result="amount">Q0.00</dd>
+        </div>
+        <div class="stat">
+          <dt>Total de intereses</dt>
+          <dd data-result="totalInterest">Q0.00</dd>
+        </div>
+        <div class="stat stat--strong">
+          <dt>Total a pagar</dt>
+          <dd data-result="totalPaid">Q0.00</dd>
+        </div>
+      </dl>
+
+      <div class="result__actions">
+        <button type="button" id="toggle-table" class="btn btn--secondary"
+                aria-expanded="false" aria-controls="schedule">
+          <svg class="btn__icon" viewBox="0 0 24 24" aria-hidden="true"><path d="M3 5a2 2 0 0 1 2-2h14a2 2 0 0 1 2 2v14a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V5Zm2 0v3h14V5H5Zm0 5v4h6v-4H5Zm8 0v4h6v-4h-6Zm-8 6v3h6v-3H5Zm8 0v3h6v-3h-6Z"/></svg>
+          <span data-label>Ver tabla de amortización</span>
+        </button>
+        <button type="button" id="reset" class="btn btn--ghost">
+          <svg class="btn__icon" viewBox="0 0 24 24" aria-hidden="true"><path d="M12 5V2L7 6l5 4V7a6 6 0 1 1-6 6H4a8 8 0 1 0 8-8Z"/></svg>
+          Hacer otro cálculo
+        </button>
+      </div>
+    </section>
+
+    <!-- 3. Tabla de amortización (oculta hasta que el usuario la pida) -->
+    <section id="schedule" class="card schedule" aria-labelledby="schedule-title" hidden>
+      <div class="schedule__head">
+        <div>
+          <h2 id="schedule-title" class="card__title" tabindex="-1">Tabla de amortización</h2>
+          <p class="card__lead" data-schedule="caption"></p>
+        </div>
+        <button type="button" id="print" class="btn btn--ghost btn--small">
+          <svg class="btn__icon" viewBox="0 0 24 24" aria-hidden="true"><path d="M6 2h12v5H6V2Zm-2 7h16a2 2 0 0 1 2 2v6h-4v5H6v-5H2v-6a2 2 0 0 1 2-2Zm4 8v3h8v-3H8Z"/></svg>
+          Imprimir o guardar PDF
+        </button>
+      </div>
+
+      <p class="mobile-note" data-schedule="paymentNote"></p>
+
+      <ul class="legend">
+        <li><strong>Interés:</strong> lo que paga al banco por el préstamo ese mes.</li>
+        <li><strong>Capital:</strong> la parte de su cuota que reduce su deuda.</li>
+        <li><strong>Saldo:</strong> lo que aún debe después de pagar la cuota.</li>
+      </ul>
+
+      <div class="table-wrap" tabindex="0" role="region" aria-label="Tabla de amortización, desplácese para ver todas las columnas">
+        <table class="table">
+          <thead>
+            <tr>
+              <th scope="col">Mes</th>
+              <th scope="col" class="col-payment">Cuota</th>
+              <th scope="col">Interés</th>
+              <th scope="col">Capital</th>
+              <th scope="col">Saldo</th>
+            </tr>
+          </thead>
+          <tbody data-schedule="body"></tbody>
+          <tfoot data-schedule="foot"></tfoot>
+        </table>
+      </div>
+    </section>
+  </main>
+
+  <footer class="site-footer">
+    <div class="container site-footer__inner">
+      <img class="site-footer__logo" src="assets/img/logo-sb.png" alt="SB_SoftSolutions – Software &amp; Consulting" width="240" height="137" >
+      <p>Desarrollado por <strong>SB_SoftSolutions</strong> · Software &amp; Consulting</p>
+      <p class="site-footer__note">Esta herramienta no guarda ningún dato. Todos los cálculos se hacen en su dispositivo.</p>
+    </div>
+  </footer>
+</body>
+</html>
